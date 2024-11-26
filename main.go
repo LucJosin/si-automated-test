@@ -4,6 +4,12 @@
 // Testable code that has user authentication with mocked data. Mid to complex user authentication like
 // using unique nickname, email and minimum password size and more. Use go 1.23 with new net/http methods.
 
+// Tradução:
+//
+// Usando a linguagem golang e um único arquivo, crie um método que representa tanto o controlador quanto o serviço.
+// Código testável que tem autenticação de usuário com dados simulados. Autenticação de usuário de média a complexa contendo
+// nickname exclusivo, e-mail e tamanho mínimo de senha e muito mais. Use go 1.23 com novos métodos net/http.
+
 package main
 
 import (
@@ -24,9 +30,9 @@ type AuthService struct {
 	mockUsers []User
 }
 
-// Inicializa usuários simulados para teste
 func NewAuthService() *AuthService {
 	return &AuthService{
+		// Inicializa usuários simulados para teste
 		mockUsers: []User{
 			{"user", "test@example.com", "F9DXIK6hvuFINjmC"},
 		},
