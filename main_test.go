@@ -42,6 +42,12 @@ func TestAuthenticate(t *testing.T) {
 			"nickname already exists",
 		},
 		{
+			"invalid nickname too short",
+			User{"ur", "user@example.com", "F9DXIK6hvuFINjmC"},
+			true,
+			"nickname must be 3-16 characters and can include letters, numbers, underscores, or hyphens",
+		},
+		{
 			"email already exists",
 			User{"user", "test@example.com", "F9DXIK6hvuFINjmC"},
 			true,
@@ -70,7 +76,7 @@ func TestRegisterHandler(t *testing.T) {
 	tests := []struct {
 		name     string
 		method   string
-		user     User
+		user     any
 		wantCode int
 		wantBody string
 	}{
@@ -87,6 +93,13 @@ func TestRegisterHandler(t *testing.T) {
 			User{},
 			http.StatusMethodNotAllowed,
 			"method not allowed\n",
+		},
+		{
+			"invalid body",
+			http.MethodPost,
+			"",
+			http.StatusBadRequest,
+			"invalid request body\n",
 		},
 		{
 			"duplicate nickname",
